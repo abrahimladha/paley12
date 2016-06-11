@@ -17,16 +17,34 @@ public class Paley13 {
             p.get(i+"").add((i-4+13)%13 + "");
         }
         //System.out.println(p.toString());
-        //System.out.println(collapse(p,0+"",4+""));
+        System.out.println(collapse(p,0+"",4+""));
+        K5print(collapse(newpaley13(),11+"",10+""));
+        /*
         for(int i = 0; i < 12; i++){
             for(int j = 0; j < 12; j++){
-                K5print(collapse(p,i+"",j+""));
+       //         System.out.println("collapsed" + i + "-" + j);
+                K5print(collapse(newpaley13(),i+"",j+""));
             }
+        }*/
+    }
+    public static HashMap<String,HashSet<String>> newpaley13(){
+        HashMap<String,HashSet<String>> p = new HashMap<>();
+        for(int i = 0; i < 13; i++)
+            p.put(i+"", new HashSet());
+        for(int i = 0; i < 13; i++){
+            p.get(i+"").add((i+1)%13 + "");
+            p.get(i+"").add((i+3)%13 + "");
+            p.get(i+"").add((i+4)%13 + "");
+            p.get(i+"").add((i-1+13)%13 + "");
+            p.get(i+"").add((i-3+13)%13 + "");
+            p.get(i+"").add((i-4+13)%13 + "");
         }
+        return p;
     }
     public static HashMap<String,HashSet<String>> collapse(
                     HashMap<String,HashSet<String>> p, String a, String b){
         if((p.get(a).contains(b))&&(p.get(b).contains(a))){
+            System.out.println(a + "-" + b);
             HashMap<String,HashSet<String>> temp = new HashMap<>();
             for(Map.Entry<String, HashSet<String>> entry : p.entrySet()){
                 if((!entry.getKey().equals(a)) &&  (!entry.getKey().equals(b)))
@@ -48,7 +66,7 @@ public class Paley13 {
             temp.get(s).remove(b);
             return temp;
         }
-        else System.out.println(a + "-" +b +  " Cant do that. those two vertices do not share an edge");
+        //else System.out.println(a + "-" +b +  " Cant do that. those two vertices do not share an edge");
         return p;
     }
     public static void K5print(
@@ -88,7 +106,7 @@ public static <T> Set<Set<T>> powerSet(Set<T> originalSet) {
 }*/
     public static void fivegenerator(HashMap<String,HashSet<String>> p){
         if(p != null){
-        System.out.println("a");
+        //System.out.println("a");
         int verts = 0;
         ArrayList<String> names = new ArrayList<>();
         for(Map.Entry<String, HashSet<String>> entry : p.entrySet()){
